@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevBoard</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ebf3ff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .header h1 {
+            font-weight: bold;
+            color: #222;
+            display: flex;
+            align-items: center;
+        }
+        .discover {
+            background: linear-gradient(90deg, #4A90E2, #6A5AE0);
+            padding: 12px 20px;
+            color: white;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+            display: flex;
+            align-items: center;
+        }
+        .discover:hover {
+            opacity: 0.9;
+        }
+        .dashboard {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .task-section {
+            width: 75%;
+        }
+        .task-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .task {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+        .task:hover {
+            transform: scale(1.05);
+        }
+        .completed {
+            background: #d1e7dd;
+            text-decoration: line-through;
+        }
+        .activity-log {
+            width: 25%;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .activity-log h3 {
+            margin-top: 0;
+        }
+        .clear-btn {
+            background: #4A90E2;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 DevBoard</h1>
+            <button class="discover" onclick="navigateToBlog()">📖 Discover Something New</button>
+        </div>
+        
+        <div class="dashboard">
+            <div class="task-section">
+                <h2>📌 Task Assigned: <span id="taskCount">6</span></h2>
+                <div class="task-container" id="taskList">
+                    <div class="task" onclick="toggleTask(this)">Fix Mobile Button Issue</div>
+                    <div class="task" onclick="toggleTask(this)">Add Dark Mode</div>
+                    <div class="task" onclick="toggleTask(this)">Optimize Home Page</div>
+                    <div class="task" onclick="toggleTask(this)">Integrate OpenAI API</div>
+                    <div class="task" onclick="toggleTask(this)">Improve Job Searching</div>
+                    <div class="task" onclick="toggleTask(this)">Add New Emoji 🎉</div>
+                </div>
+            </div>
+            
+            <div class="activity-log" id="activityLog">
+                <h3>📜 Activity Log</h3>
+                <button class="clear-btn" onclick="clearLog()">Clear History</button>
+                <div id="logEntries"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function navigateToBlog() {
+            window.location.href = "blog.html";
+        }
+
+        function toggleTask(element) {
+            element.classList.toggle("completed");
+            updateTaskCount();
+            logActivity(element.textContent + " task toggled.");
+        }
+
+        function updateTaskCount() {
+            const totalTasks = document.querySelectorAll(".task").length;
+            const completedTasks = document.querySelectorAll(".task.completed").length;
+            document.getElementById("taskCount").textContent = totalTasks - completedTasks;
+        }
+
+        function logActivity(message) {
+            const logEntries = document.getElementById("logEntries");
+            const entry = document.createElement("p");
+            entry.textContent = new Date().toLocaleTimeString() + " - " + message;
+            logEntries.appendChild(entry);
+        }
+
+        function clearLog() {
+            document.getElementById("logEntries").innerHTML = "";
+        }
+    </script>
+</body>
+</html>

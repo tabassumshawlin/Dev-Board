@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: #007bff;
+            color: white;
+            border-radius: 10px 10px 0 0;
+        }
+        .question {
+            background: #fff;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+        .answer {
+            display: none;
+            padding: 10px;
+            margin-top: 5px;
+            background: #f8f9fa;
+            border-left: 4px solid #007bff;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Blogs</h1>
+            <a href="index.html" class="button">Back to Desk</a>
+        </div>
+        
+        <div class="question" onclick="toggleAnswer(this)">Question-1: What are the different ways to select an element in the DOM?
+            <div class="answer">You can use <code>getElementById</code>, <code>getElementsByClassName</code>, <code>querySelector</code>, and <code>querySelectorAll</code> to select elements.</div>
+        </div>
+        
+        <div class="question" onclick="toggleAnswer(this)">Question-2: What is the difference between innerHTML, innerText, and textContent?
+            <div class="answer">innerHTML returns the HTML inside an element, innerText returns only visible text, and textContent returns all text, including hidden text.</div>
+        </div>
+        
+        <div class="question" onclick="toggleAnswer(this)">Question-3: What is event delegation in the DOM?
+            <div class="answer">Event delegation allows handling events at a parent level instead of individual elements using event bubbling.</div>
+        </div>
+        
+        <div class="question" onclick="toggleAnswer(this)">Question-4: What is event bubbling in the DOM?
+            <div class="answer">Event bubbling is when an event triggered on a child element propagates up to its parent elements.</div>
+        </div>
+        
+        <div class="question" onclick="toggleAnswer(this)">Question-5: How do you create, add, and remove elements using JavaScript?
+            <div class="answer">Use <code>document.createElement()</code> to create, <code>appendChild()</code> to add, and <code>removeChild()</code> to remove elements.</div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleAnswer(element) {
+            let answer = element.querySelector(".answer");
+            answer.style.display = (answer.style.display === "block") ? "none" : "block";
+        }
+    </script>
+</body>
+</html>
